@@ -19,7 +19,7 @@
                 }
             ],
          "logConfiguration": {
-            "logDriver": "awslog",
+            "logDriver": "awslogs",
             "options": {
               "awslogs-group": "/ecs/ctfd",
               "awslogs-region": "us-west-2",
