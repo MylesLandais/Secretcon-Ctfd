@@ -4,9 +4,9 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  count                   = 3
+  count                   = var.az_count
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = cidrsubnet(var.SUBCIDR, 8, data.aws_availability_zones.available.names[count.index] + count.index)
+  cidr_block              = cidrsubnet(var.SUBCIDR, 8, var.az_count + count.index)
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 }
