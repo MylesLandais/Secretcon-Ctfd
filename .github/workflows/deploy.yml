@@ -30,7 +30,7 @@ jobs:
         run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"  #create S3 bucket and move the plan to the bucket uncompleted step
       - name: Terraform format
         id: fmt
-        run: terraform fmt -check
+        run: terraform fmt -check -list=false
       - name: terraform validate
         id: validate
         run: terraform validate
