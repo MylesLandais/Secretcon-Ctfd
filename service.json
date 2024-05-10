@@ -1,0 +1,39 @@
+[
+        {
+            "name": "ctfd",
+            "image": "docker.io/ctfd/ctfd:3.7.0",
+            "portMappings": [
+                {
+                    "name": "ctfd-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "SECRET_KEY",
+                    "value": "666"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/",
+                    "awslogs-region": "us-east-2",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": [],
+            "resourceRequirements": [
+                {
+                    "value": "1",
+                    "type": "GPU"
+                }
+            ]
+        }
+]
