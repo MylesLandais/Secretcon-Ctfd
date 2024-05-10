@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "ctfd-task" {
 }
 
 resource "aws_ecs_service" "ctfd-svc" {
-  name            = var.SERVICE_NAME
+  name            = "supersecretctf"
   cluster         = aws_ecs_cluster.ctfd-cluser.id
   task_definition = aws_ecs_task_definition.ctfd-task.arn
   desired_count   = 1
