@@ -9,12 +9,13 @@ resource "aws_ecs_cluster_capacity_providers" "cap-providers" {
 }
 
 resource "aws_ecs_task_definition" "ctfd-task" {
-  family                = var.SERVICE_NAME
+  family                   = var.SERVICE_NAME
   requires_compatibilities = ["FARGATE"]
-  container_definitions = file("./service.json")
-  network_mode          = "awsvpc"
-  cpu                   = 1024
-  memory                = 3072
+  container_definitions    = file("./service.json")
+  network_mode             = "awsvpc"
+  task_role_arn            = "arn:aws:iam::975050366977:role/ecsTaskExecutionRole"
+  cpu                      = 1024
+  memory                   = 3072
 
 }
 
@@ -24,8 +25,8 @@ resource "aws_ecs_service" "ctfd-svc" {
   task_definition = aws_ecs_task_definition.ctfd-task.arn
   desired_count   = 1
   network_configuration {
-    subnets          = [aws_subnet.main.id]
-    security_groups  = [aws_security_group.ctfd-secgroup.id]
+    subnets         = [aws_subnet.main.id]
+    security_groups = [aws_security_group.ctfd-secgroup.id]
   }
   lifecycle {
     create_before_destroy = true
