@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "ctfd-cluser" {
 
 resource "aws_ecs_cluster_capacity_providers" "cap-providers" {
   cluster_name       = aws_ecs_cluster.ctfd-cluser.name
-  capacity_providers = ["FARGATE_SPOT"]
+  capacity_providers = ["FARGATE"]
 
 }
 
