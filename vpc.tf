@@ -38,7 +38,7 @@ resource "aws_alb_target_group" "ctfd" {
 resource "aws_alb" "alb" {
   name = "ctfd-alb"
   security_groups = [aws_security_group.ctfd-secgroup.id]
-  subnets = aws_subnet.main.id
+  subnets = [aws_subnet.main.id]
 }
 resource "aws_alb_listener" "cftd-alb-listener" {
   load_balancer_arn = aws_alb.alb.arn
