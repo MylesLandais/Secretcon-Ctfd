@@ -28,9 +28,5 @@ resource "aws_ecs_service" "ctfd-svc" {
     subnets         = [aws_subnet.main.id]
     security_groups = [aws_security_group.ctfd-secgroup.id]
   }
-  lifecycle {
-    create_before_destroy = true
-  }
-
 }
 
