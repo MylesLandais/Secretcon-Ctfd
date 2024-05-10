@@ -4,7 +4,8 @@ resource "aws_vpc" "main" {
 
 resource "aws_subnet" "main" {
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = var.SUBCIDR
+  cidr_block              = cidrsubnet(var.SUBCIDR, 8, data.aws_availability_zones.available.names[count.index] + count.index)
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 }
 
@@ -23,8 +24,7 @@ resource "aws_vpc_security_group_egress_rule" "ctfd-egress" {
   security_group_id = aws_security_group.ctfd-secgroup.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
-  from_port         = 0
-  to_port           = 0
+
 }
 
 resource "aws_alb_target_group" "ctfd" {
