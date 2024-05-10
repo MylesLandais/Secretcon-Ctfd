@@ -1,18 +1,6 @@
 resource "aws_ecs_cluster" "ctfd-cluser" {
   name = var.ECS_CLUSTER
 }
-
-resource "aws_ecs_cluster_capacity_providers" "cap-providers" {
-  cluster_name       = aws_ecs_cluster.ctfd-cluser.name
-  capacity_providers = ["FARGATE"]
-  default_capacity_provider_strategy {
-    base              = 1
-    weight            = 100
-    capacity_provider = "FARGATE"
-  }
-
-}
-
 resource "aws_ecs_task_definition" "ctfd-task" {
   family                   = var.SERVICE_NAME
   requires_compatibilities = ["FARGATE"]
@@ -44,3 +32,12 @@ resource "aws_ecs_service" "ctfd-svc" {
   }
 }
 
+module "ecs-service-autoscaling" {
+  source                    = "cn-terraform/ecs-service-autoscaling/aws"
+  version                   = "1.0.3"
+  ecs_cluster_name          = aws_ecs_cluster.ctfd-cluser.name
+  ecs_service_name          = aws_ecs_service.ctfd-svc.name
+  name_prefix               = "ctfd"
+  scale_target_min_capacity = 1
+  max_cpu_threshold         = 2048
+}
