@@ -17,6 +17,14 @@
                     "name": "SECRET_KEY",
                     "value": "666"
                 }
-            ]
+            ],
+         "logConfiguration": {
+            "logDriver": "awslog",
+            "options": {
+              "awslogs-group": "/ecs/ctfd",
+              "awslogs-region": "us-west-2",
+              "awslogs-stream-prefix": "ecs"
+            }
         }
+    }
 ]
