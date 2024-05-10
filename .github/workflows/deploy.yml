@@ -8,12 +8,6 @@ env:
     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE}}
-    TF_VAR_ECS_CLUSTER: ${{ secrets.TF_VAR_ECS_CLUSTER }}
-    TF_VAR_SERVICE_NAME: ${{ secrets.TF_VAR_SERVICE_NAME }}
-    TF_VAR_CIDR: ${{ secrets.TF_VAR_CIDR }}
-    TF_VAR_SUBCIDR: ${{ secrets.TF_VAR_SUBCIDR }}
-    TF_VAR_SECGROUP: ${{ secrets.TF_VAR_SECGROUP }}
-    TF_VAR_CTFD_PORT: ${{ secrets.TF_VAR_CTFD_PORT }}
 jobs:
   deploy:
     runs-on: "ubuntu-latest"
