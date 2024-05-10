@@ -44,6 +44,7 @@ resource "aws_alb" "alb" {
 }
 resource "aws_alb_listener" "cftd-alb-listener" {
   load_balancer_arn = aws_alb.alb.arn
+  port = 8000
   default_action {
     type             = "forward"
     target_group_arn = aws_alb_target_group.ctfd.arn
