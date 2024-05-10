@@ -28,9 +28,4 @@ resource "aws_ecs_service" "ctfd-svc" {
   }
 
 }
-resource "aws_ecs_task_set" "ctfd-task-set" {
-  service         = aws_ecs_service.ctfd-svc.id
-  cluster         = aws_ecs_cluster.ctfd-cluser.id
-  task_definition = aws_ecs_task_definition.ctfd-task.arn
 
-}
