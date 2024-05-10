@@ -17,12 +17,6 @@
                     "name": "SECRET_KEY",
                     "value": "666"
                 }
-            ],
-            "resourceRequirements": [
-                {
-                    "value": "1",
-                    "type": "GPU"
-                }
             ]
         }
 ]
