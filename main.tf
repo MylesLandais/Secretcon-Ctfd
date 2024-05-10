@@ -16,6 +16,10 @@ resource "aws_ecs_task_definition" "ctfd-task" {
   task_role_arn            = "arn:aws:iam::975050366977:role/ecsTaskExecutionRole"
   cpu                      = 1024
   memory                   = 3072
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture = "X86_64"
+  }
 
 }
 
