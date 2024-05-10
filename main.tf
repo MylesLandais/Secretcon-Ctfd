@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "ctfd-task" {
   memory                   = 3072
   runtime_platform {
     operating_system_family = "LINUX"
-    cpu_architecture = "X86_64"
+    cpu_architecture        = "X86_64"
   }
 
 }
@@ -30,8 +30,8 @@ resource "aws_ecs_service" "ctfd-svc" {
   desired_count   = 1
   load_balancer {
     target_group_arn = aws_alb_target_group.ctfd.arn
-    container_name = "ctfd"
-    container_port = 8000
+    container_name   = "ctfd"
+    container_port   = 8000
   }
   network_configuration {
     subnets         = [aws_subnet.main.id]

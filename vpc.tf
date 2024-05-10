@@ -3,8 +3,8 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.SUBCIDR
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.SUBCIDR
   map_public_ip_on_launch = true
 }
 
@@ -23,28 +23,28 @@ resource "aws_vpc_security_group_egress_rule" "ctfd-egress" {
   security_group_id = aws_security_group.ctfd-secgroup.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
-  from_port = 0
-  to_port = 0
+  from_port         = 0
+  to_port           = 0
 }
 
 resource "aws_alb_target_group" "ctfd" {
-  name = "ctfd-TargetGroup"
-  port = 8000
-  protocol = "HTTP"
-  vpc_id = aws_vpc.main.id
+  name        = "ctfd-TargetGroup"
+  port        = 8000
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.main.id
   target_type = "ip"
 }
 
 resource "aws_alb" "alb" {
-  name = "ctfd-alb"
+  name            = "ctfd-alb"
   security_groups = [aws_security_group.ctfd-secgroup.id]
-  subnets = [aws_subnet.main.id]
+  subnets         = [aws_subnet.main.id]
 }
 resource "aws_alb_listener" "cftd-alb-listener" {
   load_balancer_arn = aws_alb.alb.arn
   default_action {
-    type = "forward"
-     target_group_arn = aws_alb_target_group.ctfd.arn
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.ctfd.arn
   }
-  
+
 }
