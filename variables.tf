@@ -16,3 +16,8 @@ variable "SECGROUP" {
 variable "CTFD_PORT" {
   type = number
 }
+variable "az_count" {
+  description = "Describes how many availability zones are used"
+  default     = 2
+  type        = number
+}
