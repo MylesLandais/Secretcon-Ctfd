@@ -56,7 +56,7 @@ resource "aws_eip" "nat_gateway" {
 
 resource "aws_nat_gateway" "nat_gateway" {
   count         = var.az_count
-  subnet_id     = aws_subnet.public[count.index].id
+  subnet_id     = aws_subnet.main[count.index].id
   allocation_id = aws_eip.nat_gateway[count.index].id
 }
 
