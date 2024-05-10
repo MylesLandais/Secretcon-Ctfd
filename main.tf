@@ -23,8 +23,8 @@ resource "aws_ecs_service" "ctfd-svc" {
   task_definition = aws_ecs_task_definition.ctfd-task.arn
   desired_count   = 1
   network_configuration {
-    subnets          = aws_subnet.main.cidr_block
-    security_groups  = aws_security_group.ctfd-secgroup.name
+    subnets          = [aws_subnet.main.cidr_block]
+    security_groups  = [aws_security_group.ctfd-secgroup.name]
     assign_public_ip = true
   }
 
