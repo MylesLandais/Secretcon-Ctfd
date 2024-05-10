@@ -8,7 +8,7 @@ resource "aws_subnet" "main" {
 }
 
 resource "aws_security_group" "ctfd-secgroup" {
-  name   = var.SECGROUP
+  name   = "sg-${var.SECGROUP}"
   vpc_id = aws_vpc.main.id
 }
 resource "aws_vpc_security_group_ingress_rule" "ctfd-ingress" {
