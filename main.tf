@@ -34,7 +34,7 @@ resource "aws_ecs_service" "ctfd-svc" {
     container_port   = 8000
   }
   network_configuration {
-    subnets         = [aws_subnet.main.id]
+    subnets         = aws_subnet.main.*.id
     security_groups = [aws_security_group.ctfd-secgroup.id]
   }
 }
