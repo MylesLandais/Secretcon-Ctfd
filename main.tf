@@ -21,6 +21,7 @@ resource "aws_ecs_service" "ctfd-svc" {
   name            = "secretctfd"
   cluster         = aws_ecs_cluster.ctfd-cluser.id
   task_definition = aws_ecs_task_definition.ctfd-task.arn
+  launch_type = "FARGATE"
   desired_count   = 1
   load_balancer {
     target_group_arn = aws_alb_target_group.ctfd.arn
