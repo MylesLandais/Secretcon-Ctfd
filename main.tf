@@ -10,6 +10,7 @@ resource "aws_ecs_cluster_capacity_providers" "cap-providers" {
 
 resource "aws_ecs_task_definition" "ctfd-task" {
   family                = var.SERVICE_NAME
+  requires_compatibilities = ["FARGATE"]
   container_definitions = file("./service.json")
   network_mode          = "awsvpc"
   cpu                   = 1024
