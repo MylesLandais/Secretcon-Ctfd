@@ -1,5 +1,6 @@
 [
         {
+            "name": "ctfd",
             "image": "docker.io/ctfd/ctfd:3.7.0",
             "portMappings": [
                 {
