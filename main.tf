@@ -6,7 +6,8 @@ resource "aws_ecs_task_definition" "ctfd-task" {
   requires_compatibilities = ["FARGATE"]
   container_definitions    = file("./service.json")
   network_mode             = "awsvpc"
-  task_role_arn            = "arn:aws:iam::975050366977:role/ecsTaskExecutionRole"
+  task_role_arn            = aws_iam_role.ecs_task_execution.arn
+  execution_role_arn       = aws_iam_role.ecs_task_execution.arn
   cpu                      = 1024
   memory                   = 3072
   runtime_platform {
