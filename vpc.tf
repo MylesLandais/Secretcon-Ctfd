@@ -51,15 +51,6 @@ resource "aws_alb_listener" "cftd-alb-listener" {
   }
 
 }
-resource "aws_eip" "nat_gateway" {
-  count = var.az_count
-}
-
-resource "aws_nat_gateway" "nat_gateway" {
-  count         = var.az_count
-  subnet_id     = aws_subnet.main[count.index].id
-  allocation_id = aws_eip.nat_gateway[count.index].id
-}
 resource "aws_internet_gateway" "default" {
   vpc_id = aws_vpc.main.id
 
