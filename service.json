@@ -8,6 +8,9 @@
                 }
             ],
             "essential": true,
+            "linux_parameters": {
+              "init_process_enabled": "true"
+            },
             "environment": [
                 {
                     "name": "SECRET_KEY",
