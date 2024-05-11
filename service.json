@@ -4,11 +4,7 @@
             "image": "docker.io/ctfd/ctfd:3.7.0",
             "portMappings": [
                 {
-                    "name": "ctfd-8000-tcp",
-                    "containerPort": 8000,
-                    "hostPort": 8000,
-                    "protocol": "tcp",
-                    "appProtocol": "http"
+                    "containerPort": 8000
                 }
             ],
             "essential": true,
