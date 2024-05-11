@@ -31,6 +31,7 @@ resource "aws_ecs_service" "ctfd-svc" {
   network_configuration {
     subnets         = aws_subnet.main.*.id
     security_groups = [aws_security_group.ctfd-secgroup.id]
+    assign_public_ip = true
   }
 }
 
